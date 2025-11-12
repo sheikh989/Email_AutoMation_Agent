@@ -1,5 +1,24 @@
+# CrewAI Framework and Dependencies
+crewai[tools]>=0.148.0,<1.0.0
+
+# Data Processing
 numpy>=1.24.0
 pandas>=2.0.0
-requests>=2.31.0
-matplotlib>=3.7.0
 scikit-learn>=1.3.0
+
+# HTTP and Web Requests
+requests>=2.31.0
+
+# Data Visualization
+matplotlib>=3.7.0
+
+# Data Validation and Settings Management
+pydantic>=2.0.0
+
+# SMTP and Email Support (standard library, but included for clarity)
+# email (included with Python)
+# smtplib (included with Python)
+# ssl (included with Python)
+
+# Optional: For enhanced functionality
+python-dotenv>=1.0.0
