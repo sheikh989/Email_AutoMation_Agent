@@ -1,153 +1,394 @@
-# AI LLMs: A Comprehensive Report
+# Automation Agent - CrewAI Email & Report Generation System
 
-## Executive Summary
+A sophisticated multi-agent AI system powered by CrewAI that automates research, report generation, and email delivery. This system intelligently orchestrates multiple AI agents to research topics, create detailed reports, format documents, and send emails with attachments.
 
-The field of Large Language Models (LLMs) is experiencing rapid advancements and profound impacts across various sectors. This report provides a detailed overview of current trends, emerging technologies, and key challenges in the LLM landscape. From the dominance of multimodal models to the integration of LLMs in cybersecurity and the Metaverse, this report offers a comprehensive analysis of the latest developments and future directions of LLMs.
+## 🎯 Project Overview
 
-## 1. Multimodal LLMs Dominate
+This automation system uses CrewAI to coordinate specialized AI agents that work together to:
 
-Multimodal LLMs, capable of processing and generating content across multiple data types, are now the dominant force in the LLM landscape. These models seamlessly handle text, images, audio, video, and sensor data, enabling sophisticated applications that require cross-modal understanding.
+- **Research**: Gather cutting-edge information on any topic
+- **Report Generation**: Create both long-form (~2300 words) and executive (~400 words) reports
+- **Formatting**: Transform reports into beautifully formatted markdown documents
+- **Email Composition**: Write professional, context-aware emails
+- **Email Delivery**: Send emails via SMTP with attachments and bulk capabilities
 
-*   **Key Features:**
-    *   **Cross-Modal Integration:** Ability to understand and generate content that integrates various data modalities.
-    *   **Complex Task Execution:** Excelling at tasks that require understanding and synthesis of information from multiple sources.
-    *   **Examples:** Generating videos from text descriptions, answering questions about complex visual scenes, and creating interactive experiences.
-*   **Leading Examples:**
-    *   **Google's Gemini Ultra 2.0:** A highly advanced multimodal model known for its capabilities in understanding and generating diverse content.
-    *   **OpenAI's Atlas:** Another cutting-edge model, designed to handle complex tasks involving multiple data types.
-*   **Impact:** Multimodal LLMs are transforming how we interact with technology, providing more intuitive and versatile interfaces.
+### Key Features
 
-## 2. Specialized LLMs for Scientific Discovery
+✨ **Multi-Agent Collaboration**: Researcher, Reporting Analyst, Formatter, Email Writer, and Email Assistant agents
+📧 **Smart Email Handling**: Automatic subject generation, bulk sending via CSV, file attachments
+📝 **Flexible Report Generation**: Choose between comprehensive or executive summaries
+🔄 **Context-Aware Processing**: Agents share context and build upon each other's outputs
+🎨 **Markdown Formatting**: Professional document formatting with proper structure and citations
+📎 **File Attachment Support**: Seamlessly attach files to emails
+🔐 **Secure SMTP**: Support for multiple email providers (Gmail, Outlook, Yahoo, Zoho, iCloud)
 
-LLMs are revolutionizing scientific research by accelerating discovery across various disciplines. Models fine-tuned on massive datasets of scientific literature, experimental data, and simulations are used to address complex scientific challenges.
+## 📋 Prerequisites
 
-*   **Applications:**
-    *   **Drug Discovery:** Accelerating the identification of potential drug candidates and optimizing drug design.
-    *   **Materials Science:** Designing novel materials with specific properties, improving materials characterization and analysis.
-    *   **Climate Modeling:** Enhancing the accuracy and efficiency of climate simulations, facilitating climate research.
-*   **Key Examples:**
-    *   **DeepMind's AlphaFold 3:** Predicts protein structures with unprecedented accuracy, aiding in understanding biological processes.
-    *   **LLMs for Catalyst Design:** LLMs are used to design novel catalysts for chemical reactions, reducing the need for extensive experimentation.
-*   **Impact:** These models are helping to accelerate scientific breakthroughs and bring about advances in critical fields.
+- **Python**: 3.10 - 3.13
+- **pip** or **uv** (recommended for dependency management)
+- **Environment Variables**: 
+  - `OPENAI_API_KEY` or equivalent LLM provider key
+  - Email credentials (configured in [src/automation/log_in.py](src/automation/log_in.py))
 
-## 3. Edge-Based LLMs
+## 🚀 Installation
 
-The trend of running LLMs on edge devices (smartphones, IoT devices) is accelerating, driven by the need for low latency, privacy, and offline functionality.
+### 1. Clone or Download the Project
 
-*   **Drivers:**
-    *   **Low Latency:** Reducing the time it takes to get responses.
-    *   **Privacy:** Processing data locally minimizes the need to send sensitive data to the cloud.
-    *   **Offline Functionality:** Enabling LLM capabilities even without an internet connection.
-*   **Technical Advancements:**
-    *   **Model Compression:** Techniques to reduce model size without significant loss of accuracy.
-    *   **Quantization:** Reducing the precision of model parameters to decrease memory usage and computational requirements.
-    *   **Efficient Hardware:** Specialized AI chips designed to accelerate LLM inference.
-*   **Hardware Examples:**
-    *   **Qualcomm's Snapdragon 9 Gen 4:** Optimized for on-device AI processing.
-    *   **Apple's A19 Bionic:** Integrated hardware accelerators for efficient AI operations.
-*   **Impact:** Bringing the power of LLMs to resource-constrained devices, improving user experience, and enabling new applications.
+```bash
+cd Automation_agent
+```
 
-## 4. Neuro-Symbolic AI Integration
+### 2. Create a Virtual Environment (Optional but Recommended)
 
-The integration of LLMs with neuro-symbolic AI systems is gaining traction, combining the strengths of both approaches to create more powerful, explainable, and trustworthy AI systems.
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-*   **Approach:**
-    *   **LLMs:** Utilize pattern recognition and generalization capabilities.
-    *   **Symbolic AI:** Leverage reasoning and knowledge representation capabilities.
-    *   **Integration:** Combining both approaches to enhance the strengths of each.
-*   **Benefits:**
-    *   **Explainability:** Enhancing the transparency of AI decision-making processes.
-    *   **Robustness:** Improving the reliability of AI systems.
-    *   **Trustworthiness:** Building confidence in AI applications.
-*   **Applications:**
-    *   **Healthcare:** Improving diagnostic accuracy and treatment recommendations.
-    *   **Finance:** Enhancing risk assessment and fraud detection.
-*   **Impact:** Creating AI systems that are more reliable and easier to understand.
+### 3. Install Dependencies
 
-## 5. Reinforcement Learning from Human Feedback (RLHF) Evolves
+Using pip:
+```bash
+pip install -r requirements.txt
+```
 
-RLHF continues to evolve, focusing on refining methods for aligning LLMs with human preferences, ensuring outputs are safe, helpful, and harmless.
+Or using uv:
+```bash
+pip install uv
+uv pip install -r requirements.txt
+```
 
-*   **Evolution:**
-    *   **Reduced Human Labeling:** Decreasing the reliance on human feedback through advanced techniques.
-    *   **Enhanced Safety:** Ensuring models generate safe and harmless responses.
-    *   **Increased Helpfulness:** Improving the ability of models to provide relevant and useful information.
-*   **Techniques:**
-    *   **Constitutional AI:** Guiding models to adhere to a set of principles.
-    *   **Direct Preference Optimization (DPO):** Streamlining the process of aligning models with human preferences.
-*   **Impact:** Enhancing the trustworthiness and usefulness of LLMs.
+### 4. Configure Environment Variables
 
-## 6. LLMs in Cybersecurity
+Create a `.env` file in the root directory:
 
-LLMs are becoming increasingly prevalent in both offensive and defensive cybersecurity applications, bringing new capabilities but also new threats.
+```env
+OPENAI_API_KEY=your_api_key_here
+# Or if using other LLM providers:
+# GEMINI_API_KEY=your_gemini_key
+# ANTHROPIC_API_KEY=your_claude_key
+```
 
-*   **Defensive Applications:**
-    *   **Threat Detection:** Identifying and analyzing potential security threats.
-    *   **Vulnerability Analysis:** Assessing software for security weaknesses.
-    *   **Automated Incident Response:** Streamlining the response to security incidents.
-*   **Offensive Applications:**
-    *   **Phishing Attacks:** Creating highly sophisticated and convincing phishing emails.
-    *   **Malware Generation:** Automating the creation of malicious software.
-    *   **Social Engineering:** Automating deceptive tactics to manipulate individuals.
-*   **Impact:** LLMs are both enhancing cybersecurity defenses and creating new attack vectors.
+### 5. Configure Email Credentials
 
-## 7. AI-Generated Content (AIGC) Explosion
+Edit [src/automation/log_in.py](src/automation/log_in.py):
 
-The explosion of AI-generated content (AIGC) is rapidly changing content creation, enabling the generation of high-quality text, images, audio, and video.
+```python
+email = "your_email@gmail.com"
+password = "your_app_password_here"  # Use app-specific password, NOT your email password
+```
 
-*   **Capabilities:**
-    *   **High-Quality Content:** Producing professional-grade content with minimal user input.
-    *   **Efficiency:** Streamlining the content creation process.
-*   **Tools:**
-    *   **RunwayML:** Advanced tools for video generation and editing.
-    *   **Stability AI's Video Model:** Capabilities in generating high-quality videos.
-    *   **Midjourney 6.0:** Generating detailed and realistic images.
-*   **Ethical Implications:**
-    *   **Deepfakes:** Generating manipulated media content.
-    *   **Misinformation:** Spreading false or misleading information.
-    *   **Authenticity:** Verifying the originality and source of content.
-*   **Impact:** Transforming the media and creative industries, but also raising concerns about authenticity and ethical considerations.
+**Important**: For Gmail and other providers, use an [App Password](https://youtu.be/MkLX85XU5rU?feature=shared), not your regular email password.
 
-## 8. LLMs and the Metaverse
+## 📁 Project Structure
 
-LLMs are playing a key role in the development of immersive virtual worlds, enhancing user experiences and creating more engaging interactions.
+```
+Automation_agent/
+├── src/automation/
+│   ├── main.py                 # Entry point - configure inputs here
+│   ├── crew.py                 # CrewAI crew definition and orchestration
+│   ├── log_in.py               # Email credentials
+│   ├── email_body_display.py   # Email preview utility
+│   ├── config/
+│   │   ├── agents.yaml         # Agent configurations
+│   │   └── tasks.yaml          # Task definitions
+│   └── tools/
+│       ├── __init__.py
+│       └── email.py            # SMTP email sending tool
+├── knowledge/
+│   └── user_preference.txt     # User preferences and context
+├── output/                     # Generated reports and emails
+│   ├── report.txt
+│   ├── report.md
+│   ├── report.json
+│   ├── report_short.txt
+│   ├── email_body.txt
+│   └── research.txt
+├── requirements.txt            # Python dependencies
+├── pyproject.toml             # Project metadata
+├── .env                       # Environment variables (create this)
+├── .gitignore
+├── Book1.csv                  # Example CSV for bulk email sending
+└── README.md
+```
 
-*   **Applications:**
-    *   **Realistic Avatars:** Creating avatars with lifelike appearance and behavior.
-    *   **Dynamic Environments:** Generating interactive and evolving virtual environments.
-    *   **Natural Language Interaction:** Enabling users to communicate with virtual characters.
-*   **Benefits:**
-    *   **Enhanced Engagement:** Making virtual worlds more interactive and captivating.
-    *   **Improved User Experience:** Creating more intuitive and user-friendly interactions.
-*   **Impact:** Fueling the development of more immersive and interactive virtual worlds.
+## 🔧 Configuration
 
-## 9. Bias Mitigation and Fairness
+### Agents Configuration [src/automation/config/agents.yaml](src/automation/config/agents.yaml)
 
-Addressing and mitigating bias in LLMs is a critical area of focus, with efforts aimed at creating fairer and more equitable AI systems.
+Defines the behavior, goals, and backstories of each AI agent:
+- **Researcher**: Uncovers cutting-edge information on topics
+- **Reporting Analyst**: Creates detailed reports from research findings
+- **Formatter**: Transforms reports into beautifully formatted markdown
+- **Email Writer**: Composes professional emails
+- **Email Assistant**: Orchestrates email delivery via SMTP
 
-*   **Strategies:**
-    *   **Bias Identification:** Identifying and quantifying biases present in training data.
-    *   **Bias Removal:** Techniques to remove or reduce biases in training data.
-    *   **Fairness-Aware Architectures:** Designing model architectures that promote fairness.
-    *   **Fairness-Aware Training:** Developing training methods that reduce bias.
-*   **Focus Shift:**
-    *   **Societal Impact:** Assessing and mitigating the broader societal impact of biased AI.
-*   **Impact:** Building more equitable and trustworthy AI systems.
+### Tasks Configuration [src/automation/config/tasks.yaml](src/automation/config/tasks.yaml)
 
-## 10. Quantum Computing's Potential
+Defines specific tasks for each agent:
+- `research_task`: Research on a given topic
+- `reporting_task_long`: Create comprehensive (~2300 word) reports
+- `reporting_task_short`: Create executive (~400 word) reports
+- `formatting_task`: Format reports as markdown
+- `write_email_body`: Compose email messages
+- `send_email_task`: Send emails via SMTP
 
-Quantum computing holds the potential to revolutionize LLMs, offering dramatic improvements in training and inference capabilities.
+## 🎬 Usage
 
-*   **Potential:**
-    *   **Speedup:** Accelerating training and inference processes.
-    *   **Efficiency:** Enabling the development of more powerful models.
-*   **Key Area:**
-    *   **Quantum Machine Learning:** Exploring the intersection of quantum computing and machine learning.
-*   **Investment:**
-    *   **Major Tech Companies:** Significant investments in quantum computing research.
-    *   **Government Support:** Governmental initiatives to support the development of quantum technologies.
-*   **Impact:** Potentially creating more powerful and efficient LLMs.
+### Basic Usage
 
-## Conclusion
+Edit [src/automation/main.py](src/automation/main.py) to configure your query:
 
-The field of LLMs is dynamic and rapidly evolving. The trends discussed in this report highlight the current state and future direction of these powerful models. Continued innovation in multimodal LLMs, specialized models for scientific discovery, edge-based deployments, neuro-symbolic integration, RLHF, cybersecurity, AIGC, the Metaverse, bias mitigation, and quantum computing will shape the future of LLMs. Addressing the ethical considerations and societal impacts of these advancements will be crucial to ensuring responsible and beneficial application of these technologies.
+```python
+inputs = {
+    'query': "send email to user@example.com and tell him about the Burj Khalifa",
+    'attach_file_path': None,  # Optional: path to file to attach
+    'csv_file': None,          # Optional: CSV for bulk email sending
+    'date': datetime.now().strftime('%Y-%m-%d')
+}
+```
+
+Run the automation:
+
+```bash
+python -m src.automation.main
+```
+
+Or use the configured script:
+
+```bash
+python -m automation.main
+```
+
+### Query Examples
+
+#### 1. Send Email with Custom Message
+
+```python
+'query': "send email to john@example.com and tell him about the latest AI developments"
+```
+
+#### 2. Generate and Send Report
+
+```python
+'query': "generate a report on Sustainable Energy Solutions and send it to jane@example.com with subject 'Energy Report'"
+```
+
+#### 3. Bulk Email via CSV
+
+```python
+'csv_file': 'Book1.csv',
+'query': "send report on Artificial Intelligence to clients in CSV file"
+```
+
+#### 4. Email with Attachment
+
+```python
+'query': "send email to client@example.com with the report",
+'attach_file_path': 'output/report.pdf'
+```
+
+#### 5. Just Research (No Email)
+
+```python
+'query': "research the latest advancements in quantum computing"
+```
+
+## 📧 Email Features
+
+### Supported Email Providers
+
+The system automatically detects and configures SMTP for:
+- **Gmail** (smtp.gmail.com:465)
+- **Outlook/Hotmail** (smtp-mail.outlook.com:465)
+- **Yahoo** (smtp.mail.yahoo.com:465)
+- **Zoho** (smtp.zoho.com:465)
+- **iCloud** (smtp.mail.me.com:465)
+
+### Bulk Email Sending
+
+Create a CSV file with an `Emails` column:
+
+```csv
+Emails
+user1@example.com
+user2@example.com
+user3@example.com
+```
+
+Then use it in your query:
+
+```python
+'csv_file': 'Book1.csv'
+```
+
+### Email Subject Generation
+
+The system intelligently generates subjects:
+1. If you provide `subject 'My Subject'` in the query, it uses that
+2. Otherwise, it extracts the first line from the report
+3. Fallback: Uses "Automated Email"
+
+### File Attachments
+
+Attach files by providing the file path:
+
+```python
+'attach_file_path': 'output/report.pdf'
+```
+
+## 🧠 How It Works
+
+### Agent Workflow
+
+The system dynamically selects agents and tasks based on your query:
+
+```
+Query Analysis
+    ↓
+├─ Has Email? ─→ Yes ─→ Has Report? ─→ Yes ─→ Has Custom Message?
+│                         │                      ├─ Yes → Research + Long Report + Short Report + Format + Write Email + Send
+│                         │                      └─ No → Research + Short Report + Format + Send
+│                         │
+│                         └─ No → Has Custom Message?
+│                                  ├─ Yes → Write Email + Send
+│                                  └─ No → Write Email + Send
+│
+└─ No ─→ Has Report?
+         ├─ Yes → Research + Long Report + Format
+         └─ No → Write Email
+```
+
+### Email Composition Logic
+
+The system combines multiple content sources:
+
+1. **User-provided message** (from `send this message '...'`)
+2. **AI-generated email body** (from write_email_body task)
+3. **Generated report** (from reporting tasks)
+
+All markdown formatting is cleaned before sending for plain-text email compatibility.
+
+## 📊 Output Files
+
+Generated files are saved to the `output/` directory:
+
+| File | Purpose |
+|------|---------|
+| `research.txt` | Raw research findings in JSON format |
+| `report.txt` | Formatted markdown report (sent via email) |
+| `report.md` | Markdown version of the report |
+| `report.json` | Structured report in JSON format |
+| `report_short.txt` | Executive summary (~400 words) |
+| `email_body.txt` | Composed email body |
+
+## 🛠️ Tools and Libraries
+
+### Core Dependencies
+
+- **crewai[tools]**: Multi-agent AI orchestration framework
+- **pydantic**: Data validation and settings management
+- **pandas**: Data manipulation and CSV handling
+- **requests**: HTTP library for data fetching
+- **numpy**: Numerical computing
+- **scikit-learn**: Machine learning utilities
+- **matplotlib**: Data visualization
+
+### Python Version
+
+- **Minimum**: 3.10
+- **Maximum**: 3.13
+
+## 🔐 Security Best Practices
+
+1. **Never commit `.env` file** or credentials to version control
+2. **Use app-specific passwords** for email accounts, not your actual password
+3. **Keep `log_in.py` secure** - it contains email credentials
+4. **Validate file paths** before attaching to emails
+5. **Monitor SMTP logs** for unusual activity
+6. **Rotate credentials regularly**
+
+## 🐛 Troubleshooting
+
+### SMTP Authentication Failed
+
+```
+SMTP Send Error: (535, b'5.7.8 Username and password not accepted')
+```
+
+**Solution**: 
+- Verify email and password in [src/automation/log_in.py](src/automation/log_in.py)
+- Use an app-specific password, not your email password
+- Check that 2-factor authentication is enabled (required for Gmail app passwords)
+
+### Email Not Sending
+
+```
+FileNotFoundError: Attachment not found
+```
+
+**Solution**: Verify the attachment file path exists and is accessible.
+
+### No Report Generated
+
+Ensure your query contains keywords like "report", "research", or "generate" for report tasks to be included.
+
+### API Key Issues
+
+Verify your `.env` file has the correct API key for your LLM provider (OpenAI, Gemini, etc.).
+
+## 📝 Example Queries
+
+See [knowledge/user_preference.txt](knowledge/user_preference.txt) for user context and preferences that inform agent behavior.
+
+### Complete Examples
+
+1. **Research + Email**
+   ```
+   "Generate a report on Quantum Computing and send it to alice@example.com"
+   ```
+
+2. **Bulk Email + Report**
+   ```
+   "Send research on AI Ethics to all clients in Book1.csv"
+   ```
+
+3. **Custom Email + Attachment**
+   ```
+   "Send email to bob@example.com with message 'Please review attached document' and attach report.pdf"
+   ```
+
+## 📚 Resources
+
+- [CrewAI Documentation](https://docs.crewai.com)
+- [CrewAI GitHub Repository](https://github.com/joaomdmoura/crewai)
+- [NIST Email Authentication Guide](https://www.nist.gov/)
+- [App Password Setup Video](https://youtu.be/MkLX85XU5rU?feature=shared)
+- [CrewAI Discord Community](https://discord.com/invite/X4JWnZnxPb)
+
+## 🤝 Contributing
+
+This is a personal automation project. For improvements or extensions:
+1. Test thoroughly with different query types
+2. Update configuration files as needed
+3. Ensure backward compatibility with existing tasks
+
+## 📄 License
+
+Personal use project.
+
+## ✨ Future Enhancements
+
+- [ ] Database integration for report storage
+- [ ] Web UI for easy query input
+- [ ] Advanced scheduling for automated reports
+- [ ] Multi-language email support
+- [ ] Report analytics and metrics
+- [ ] Custom agent capabilities
+- [ ] Advanced authentication methods (OAuth2)
+
+---
+
+**Last Updated**: 2025
+**Python Version**: 3.10 - 3.13
+**CrewAI Version**: 0.148.0+
